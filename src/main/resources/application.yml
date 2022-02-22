@@ -1,7 +1,15 @@
 micronaut:
   application:
     name: mnQuickstart
+  server:
+    port: ${SERVER_PORT:8080}
 netty:
   default:
     allocator:
       max-order: 3
+hello:
+  world:
+    message: "Hello from application.yml"
+    translation:
+      ptbr: "Olá Mundo"
+      en: "Hello World"

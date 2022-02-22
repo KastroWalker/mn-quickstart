@@ -26,4 +26,18 @@ class HelloControllerTest {
         assertEquals(HttpStatus.OK, response.status)
         assertEquals("Hello From First Service", response.body.get())
     }
+
+    @Test
+    fun helloFromConfigEndpointReturnsMessageFromConfigFile() {
+        val response = client.toBlocking().exchange("/hello/config", String::class.java)
+        assertEquals(HttpStatus.OK, response.status)
+        assertEquals("Hello from application.yml", response.body.get())
+    }
+
+    @Test
+    fun helloFromTranslationEndpointReturnsContentFromConfigFile() {
+        val response = client.toBlocking().exchange("/hello/translation", String::class.java)
+        assertEquals(HttpStatus.OK, response.status)
+        assertEquals("en: Hello World, ptbr: Olá Mundo", response.body.get())
+    }
 }
